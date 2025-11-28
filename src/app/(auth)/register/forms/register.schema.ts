@@ -1,0 +1,17 @@
+import z from "zod";
+
+export const registerSchema = z.object({
+  firstName: z.string().min(1, { message: "First name is required" }),
+  lastName: z.string().min(1, { message: "Last name is required" }),
+  email: z.email({ message: "Invalid email address" }),
+  password: z
+    .string()
+    .min(8, { message: "Password must be at least 8 characters long" }),
+  confirmPassword: z
+    .string()
+    .min(8, { message: "Password must be at least 8 characters long" }),
+  birthDate: z.string().min(1, { message: "Birth date is required" }),
+  gender: z.string().min(1, { message: "Gender is required" }),
+});
+
+export type RegisterSchemaT = z.infer<typeof registerSchema>;
